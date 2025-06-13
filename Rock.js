@@ -35,7 +35,7 @@ function getComputerChoice(){
     return computerChoice;
 }
 
-const prompt = require('prompt-sync')();
+
 
 function getHumanChoice(){
     let humanChoice = prompt("Please choose Rock, Paper, or Scissors: ");
@@ -52,6 +52,8 @@ let computerScore = 0;
 
 let humanChoice = human.toLowerCase();
 let computerChoice = computer.toLowerCase();
+
+
 
 function playRound(humanChoice, computerChoice){
     
@@ -81,7 +83,6 @@ function playRound(humanChoice, computerChoice){
     }
     else{
         console.log("It's a tie go again");
-        let round = playRound(humanChoice, computerChoice);
         
     }
 
@@ -95,8 +96,17 @@ for(let i = 0; i < 5; i++){
     let computerChoice1 = computer1.toLowerCase();
     let play2 = playRound(humanChoice1, computerChoice1);
 }
-
-
+console.log(humanChoice);
+console.log(computerChoice);
+if(humanScore > computerScore){
+    console.log("You win the game!");
+}
+else if(humanScore < computerScore{
+    console.log("You lose the game!");
+}
+else{
+    console.log("It's a tie!");
+}
 // TODO GITHUB
 
 
