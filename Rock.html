@@ -5,6 +5,10 @@
     <title>Document</title>
 </head>
 <body>
+    <div class ='runningscore'>
+        <div class ='playerscore'>Player Score</div>
+        <div class='computerscore'>Computer Score</div>
+    </div>
     <div class = "userButtons">
         <button class="rock">Rock</button>;
         <button class="paper">Paper</button>;
@@ -39,6 +43,9 @@ const rock = document.querySelector('.rock');
 const paper = document.querySelector('.paper');
 const scissors = document.querySelector('.scissors');
 const outcomeDiv = document.querySelector('.outcome');
+const scores = document.querySelector('.runningscore');
+const computer = document.querySelector('.computerscore');
+const player = document.querySelector('.playerscore');
 
 
 
@@ -125,21 +132,28 @@ const Winner = (humanScore, computerScore) =>{
         const h1 = document.createElement('h1');
         h1.classList.add('player-won');
         h1.innerText = `You win the game ${humanScore} to ${computerScore} !!!`;
+        outcomeDiv.append(h1);
     }
     else if(computerScore === 5){
         const h1 = document.createElement('h1');
         h1.classList.add('computer-won');
         h1.innerText = `You lose the game ${humanScore} to ${computerScore}`;
+        outcomeDiv.append(h1);
     }
    
 }
  
+const updateScore = (humanScore, computerScore) => {
+    player.innerText = `${playerscore}`;
+    computer.innerText = `${computerscore}`;
+}
 
 rock.addEventListener('click', () => {
 
     const computerMove = getComputerChoice();
     const playerMove = 'rock';
     playRound(playerMove, computerMove);
+    const updateScore = (humanScore, computerScore); 
     Winner(humanScore, computerScore);
 
 });
@@ -148,6 +162,7 @@ paper.addEventListener('click', () => {
     const computerMove = getComputerChoice();
     const playerMove = 'paper';
     playRound(playerMove, computerMove);
+    const updateScore = (humanScore, computerScore) ;
     Winner(humanScore, computerScore);
 });
 
@@ -155,6 +170,7 @@ scissors.addEventListener('click', () => {
     const computerMove = getComputerChoice();
     const playerMove = 'scissors';
     playRound(playerMove, computerMove);
+    const updateScore = (humanScore, computerScore);
     Winner(humanScore, computerScore);
 });
 
