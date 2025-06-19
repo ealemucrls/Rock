@@ -65,55 +65,55 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice){
+    const p = document.createElement('p');
+    if(humanChoice == computerChoice){
+        p.innerText = `You tied. You both picked ${humanChoice}`;
+    }
     
-    if(humanChoice == "rock" && computerChoice == "paper"){
-        console.log("You lose! Paper beats Rock");
+    else if(humanChoice == "rock" && computerChoice == "paper"){
+        p.innerText = "You lose! Paper beats Rock";
         computerScore += 1;
     }
     else if(humanChoice == "rock" && computerChoice == "scissors"){
-        console.log("You win! Rock beats Scissors");
+        p.innerText = "You win! Rock beats Scissors";
         humanScore += 1;
     }
     else if(humanChoice == "paper" && computerChoice == "scissors"){
-        console.log("You lose! Scissors beats Paper");
+        p.innerText = "You lose! Scissors beats Paper";
         computerScore += 1;
     }
     else if(humanChoice == "paper" && computerChoice == "rock"){
-        console.log("You win! Paper beats Rock");
-        console.log(humanScore)
+        p.innerText = "You win! Paper beats Rock";
         humanScore += 1;
     }
     else if(humanChoice == "scissors" && computerChoice == "paper"){
-        console.log("You win! Scissors beats Paper");
+        p.innerText = "You win! Scissors beats Paper";
         humanScore += 1;
     }
     else if(humanChoice == "scissors" && computerChoice == "rock"){
-        console.log("You lose! Rock beats Scissors");
+        p.innerText = "You lose! Rock beats Scissors";
         computerScore += 1;
     }
-    else{
-        console.log("It's a tie");
-        
-    }
+  
 
 }
 
 
 
-rockButton.addEventListener('click', () => {
+rock.addEventListener('click', () => {
     const computerMove = getComputerChoice();
     const playerMove = 'rock';
     playRound(playerMove, computerMove);
 
 });
 
-paperButton.addEventListener('click', () => {
+paper.addEventListener('click', () => {
     const computerMove = getComputerChoice();
     const playerMove = 'paper';
     playRound(playerMove, computerMove);
 });
 
-scissorsButton.addEventListener('click', () => {
+scissors.addEventListener('click', () => {
     const computerMove = getComputerChoice();
     const playerMove = 'scissors';
     playRound(playerMove, computerMove);
