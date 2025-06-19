@@ -5,6 +5,18 @@
     <title>Document</title>
 </head>
 <body>
+    <div class ='runningscore'>
+        <div class ='playerscore'></div>
+        <div class='computerscore'></div>
+    </div>
+    <div class = "userButtons">
+        <button class="rock">Rock</button>;
+        <button class="paper">Paper</button>;
+        <button class="scissors">Scissors</button>;
+    </div>
+    <div class="outcome">
+
+    </div>
 <script>
 /*
 random number between 0 and 3 equals i
@@ -26,17 +38,28 @@ if tie than return try again and run playGround again
 call the function playGround 
 create a for loop to run it 5 times 
 */
+
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+const outcomeDiv = document.querySelector('.outcome');
+const scores = document.querySelector('.runningscore');
+const computer = document.querySelector('.computerscore');
+const player = document.querySelector('.playerscore');
+
+
+
 function getComputerChoice(){
     let i = (Math.random()*3);
     let computerChoice = "";
     if(i <= 1){
-        computerChoice = "Rock";
+        computerChoice = "rock";
     }
     else if(i >= 1 && i <= 2){
-        computerChoice = "Paper";
+        computerChoice = "paper";
     }
     else{
-        computerChoice = "Scissors";
+        computerChoice = "scissors";
     }
 
     return computerChoice;
@@ -52,60 +75,106 @@ function getHumanChoice(){
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound(humanChoice, computerChoice){
+
+
+function playRound(humanChoice, computerChoice){   
+    console.log('1', humanChoice, '2', computerChoice);
+
     
-    if(humanChoice == "rock" && computerChoice == "paper"){
-        console.log("You lose! Paper beats Rock");
+    if(humanChoice == computerChoice){
+        const p = document.createElement('p');
+        p.innerText = `You tied. You both picked ${humanChoice}`;
+        outcomeDiv.appendChild(p);
+    }
+    
+    else if(humanChoice == "rock" && computerChoice == "paper"){
+        const p = document.createElement('p');
+        p.innerText = "You lose! Paper beats Rock";
+        outcomeDiv.appendChild(p);
         computerScore += 1;
     }
     else if(humanChoice == "rock" && computerChoice == "scissors"){
-        console.log("You win! Rock beats Scissors");
+        const p = document.createElement('p');
+        p.innerText = "You win! Rock beats Scissors";
+        outcomeDiv.appendChild(p);
         humanScore += 1;
     }
     else if(humanChoice == "paper" && computerChoice == "scissors"){
-        console.log("You lose! Scissors beats Paper");
+        const p = document.createElement('p');
+        p.innerText = "You lose! Scissors beats Paper";
+        outcomeDiv.appendChild(p);
         computerScore += 1;
     }
     else if(humanChoice == "paper" && computerChoice == "rock"){
-        console.log("You win! Paper beats Rock");
-        console.log(humanScore)
+        const p = document.createElement('p');
+        p.innerText = "You win! Paper beats Rock";
+        outcomeDiv.appendChild(p);
         humanScore += 1;
     }
     else if(humanChoice == "scissors" && computerChoice == "paper"){
-        console.log("You win! Scissors beats Paper");
+        const p = document.createElement('p');
+        p.innerText = "You win! Scissors beats Paper";
+        outcomeDiv.appendChild(p);
         humanScore += 1;
     }
     else if(humanChoice == "scissors" && computerChoice == "rock"){
-        console.log("You lose! Rock beats Scissors");
+        const p = document.createElement('p');
+        p.innerText = "You lose! Rock beats Scissors";
+        outcomeDiv.appendChild(p);
         computerScore += 1;
     }
-    else{
-        console.log("It's a tie");
-        
+  
+
+}
+
+const Winner = (humanScore, computerScore) =>{
+    if(humanScore === 5){
+        const h1 = document.createElement('h1');
+        h1.classList.add('player-won');
+        h1.innerText = `You win the game ${humanScore} to ${computerScore} !!!`;
+        outcomeDiv.append(h1);
     }
-
+    else if(computerScore === 5){
+        const h1 = document.createElement('h1');
+        h1.classList.add('computer-won');
+        h1.innerText = `You lose the game ${humanScore} to ${computerScore}`;
+        outcomeDiv.append(h1);
+    }
+   
+}
+ 
+const updateScore = (humanScore, computerScore) => {
+    player.innerText = `Player Score: ${humanScore}`;
+    computer.innerText = `Computer Score: ${computerScore}`;
 }
 
+rock.addEventListener('click', () => {
 
-for(let i = 0; i < 5; i++){
-    let computer1 = getComputerChoice();
-    let human1 = getHumanChoice();
-    let humanChoice1 = human1.toLowerCase();
-    let computerChoice1 = computer1.toLowerCase();
-    let play2 = playRound(humanChoice1, computerChoice1);
-    console.log(humanScore);
-    console.log(computerScore);
-}
+    const computerMove = getComputerChoice();
+    const playerMove = 'rock';
+    playRound(playerMove, computerMove);
+    updateScore(humanScore, computerScore); 
+    Winner(humanScore, computerScore);
 
-if(humanScore > computerScore){
-    console.log("You win the game!");
-}
-else if(humanScore < computerScore){
-    console.log("You lose the game!");
-}
-else{
-    console.log("It's a tie!");
-}
+});
+
+paper.addEventListener('click', () => {
+    const computerMove = getComputerChoice();
+    const playerMove = 'paper';
+    playRound(playerMove, computerMove);
+    updateScore(humanScore, computerScore) ;
+    Winner(humanScore, computerScore);
+});
+
+scissors.addEventListener('click', () => {
+    const computerMove = getComputerChoice();
+    const playerMove = 'scissors';
+    playRound(playerMove, computerMove);
+    updateScore(humanScore, computerScore);
+    Winner(humanScore, computerScore);
+});
+
+
 // TODO GITHUB
 </script>
 </body>
