@@ -37,6 +37,7 @@ const paper = document.querySelector('.paper');
 const scissors = document.querySelector('.scissors');
 
 
+
 function getComputerChoice(){
     let i = (Math.random()*3);
     let computerChoice = "";
@@ -96,6 +97,28 @@ function playRound(humanChoice, computerChoice){
     }
 
 }
+
+
+
+rockButton.addEventListener('click', () => {
+    const computerMove = getComputerChoice();
+    const playerMove = 'rock';
+    playRound(playerMove, computerMove);
+
+});
+
+paperButton.addEventListener('click', () => {
+    const computerMove = getComputerChoice();
+    const playerMove = 'paper';
+    playRound(playerMove, computerMove);
+});
+
+scissorsButton.addEventListener('click', () => {
+    const computerMove = getComputerChoice();
+    const playerMove = 'scissors';
+    playRound(playerMove, computerMove);
+});
+
 
 
 for(let i = 0; i < 5; i++){
